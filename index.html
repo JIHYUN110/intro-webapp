@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>나를 얼마나 알까요?</title>
+  <meta name="description" content="퀴즈와 취향 카드로 알아보는 자기소개 사이트">
+  <link rel="icon" href="assets/character.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="#home">🙋 <span id="site-owner">자기소개</span></a>
+    <nav class="menu" aria-label="메뉴">
+      <a href="#home" data-route="home">Home</a>
+      <a href="#cards" data-route="cards">취향 카드</a>
+      <a href="#quiz" data-route="quiz">퀴즈</a>
+      <a href="#ranking" data-route="ranking">랭킹</a>
+      <a href="#guestbook" data-route="guestbook">방명록</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- S01 Home -->
+    <section id="page-home" class="page" data-page="home">
+      <div class="hero">
+        <img class="character" src="assets/character.svg" alt="캐릭터 이미지" width="200" height="200">
+        <p class="hello" id="hero-hello"></p>
+        <h1>나를 얼마나 알까요?</h1>
+        <p class="sub">퀴즈 10문제로 나에 대해 알아보고, 랭킹에 도전해 보세요!</p>
+        <button class="btn primary big" id="btn-start">퀴즈 시작</button>
+        <div class="hero-links">
+          <a href="#cards">취향 카드 보기 →</a>
+          <a href="#guestbook">방명록 남기기 →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- S02 취향 카드 -->
+    <section id="page-cards" class="page" data-page="cards" hidden>
+      <h2>취향 카드</h2>
+      <p class="sub">카드를 눌러 보면 이유가 나와요.</p>
+      <div class="card-grid" id="card-grid"></div>
+    </section>
+
+    <!-- S03 퀴즈 -->
+    <section id="page-quiz" class="page" data-page="quiz" hidden>
+      <div class="quiz-box">
+        <div class="quiz-head">
+          <span class="qnum" id="q-num">1 / 10</span>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"><div class="bar" id="q-bar"></div></div>
+        </div>
+        <h2 class="question" id="q-text">문제를 불러오는 중…</h2>
+        <div class="choices" id="q-choices"></div>
+        <p class="feedback" id="q-feedback" aria-live="polite"></p>
+        <button class="btn primary" id="btn-next" disabled>다음</button>
+      </div>
+    </section>
+
+    <!-- S04 결과 / 랭킹 -->
+    <section id="page-ranking" class="page" data-page="ranking" hidden>
+      <div class="result" id="result-box" hidden>
+        <p class="score-label">내 점수</p>
+        <p class="score" id="my-score">0</p>
+        <p class="title-badge" id="my-title"></p>
+        <form class="inline-form" id="rank-form">
+          <input id="rank-nick" maxlength="12" placeholder="닉네임" autocomplete="off">
+          <button class="btn primary" type="submit">랭킹 등록</button>
+        </form>
+        <p class="notice" id="rank-msg" aria-live="polite"></p>
+      </div>
+      <h2>TOP 랭킹</h2>
+      <table class="rank-table">
+        <thead><tr><th>순위</th><th>닉네임</th><th>점수</th><th>칭호</th></tr></thead>
+        <tbody id="rank-body"><tr><td colspan="4" class="empty">불러오는 중…</td></tr></tbody>
+      </table>
+      <p class="center"><button class="btn" id="btn-retry">퀴즈 다시 풀기</button></p>
+    </section>
+
+    <!-- S05 방명록 -->
+    <section id="page-guestbook" class="page" data-page="guestbook" hidden>
+      <h2>방명록</h2>
+      <form class="gb-form" id="gb-form">
+        <input id="gb-nick" maxlength="12" placeholder="닉네임" autocomplete="off">
+        <textarea id="gb-msg" maxlength="200" rows="3" placeholder="자기소개나 응원 한마디를 남겨 주세요"></textarea>
+        <div class="stickers" id="stickers" role="radiogroup" aria-label="이모지 스티커"></div>
+        <button class="btn primary" type="submit">남기기</button>
+        <p class="notice" id="gb-notice" aria-live="polite"></p>
+      </form>
+      <ul class="gb-list" id="gb-list"></ul>
+    </section>
+  </main>
+
+  <footer class="foot">클라우드 데이터베이스 · 자기소개 웹앱 · S3 + CloudFront</footer>
+
+  <script src="js/content.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
