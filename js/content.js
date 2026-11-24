@@ -19,7 +19,7 @@ const CARDS = [
   { label: "요즘 빠진 것", value: "사진 찍기", emoji: "📷", reason: "일상을 기록하는 게 재미있어요." },
 ];
 
-// answer: 정답 보기의 index (0~3)
+// answer: 정답 보기 번호 (1~4, 첫 번째 보기 = 1)
 const QUESTIONS = [
   { id: "q1", text: "제 MBTI는 무엇일까요?", choices: ["INFJ", "ENFP", "INTP", "ESFJ"], answer: 1 },
   { id: "q2", text: "제가 가장 좋아하는 음식은?", choices: ["초밥", "떡볶이", "파스타", "삼겹살"], answer: 2 },

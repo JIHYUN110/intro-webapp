@@ -49,7 +49,10 @@
     $("#q-text").textContent = "문제를 불러오는 중…";
     $("#q-choices").innerHTML = "";
     try {
-      quiz.items = shuffle(await Api.listQuestions()).slice(0, 10);
+      // 데이터의 answer는 1~4(첫 번째 보기 = 1) → 화면 처리용 0~3으로 변환
+      quiz.items = shuffle(await Api.listQuestions())
+        .slice(0, 10)
+        .map((q) => ({ ...q, answer: Number(q.answer) - 1 }));
     } catch (err) {
       $("#q-text").textContent = "문제를 불러오지 못했어요: " + err.message;
       return;
