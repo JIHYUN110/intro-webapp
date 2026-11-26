@@ -10,8 +10,8 @@
  * 이후 주차에 AppSync API를 만들고 url, apiKey만 채우면 DynamoDB로 저장돼요.
  */
 const APPSYNC = {
-  url: "",     // 예: https://xxxx.appsync-api.ap-northeast-2.amazonaws.com/graphql
-  apiKey: "",  // 예: da2-xxxxxxxx
+  url: "https://b3czplolvrczjaqnva37gunmaa.appsync-api.ap-northeast-2.amazonaws.com/graphql",
+  apiKey: "da2-jp77ahbghrffbd4i5bklc2iyua", // 공개용 API 키 (IAM 최소 권한으로 저장·조회만 가능)
 };
 
 const Api = (() => {
