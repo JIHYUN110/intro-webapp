@@ -23,8 +23,10 @@ const Api = (() => {
       headers: { "Content-Type": "application/json", "x-api-key": APPSYNC.apiKey },
       body: JSON.stringify({ query, variables }),
     });
-    const json = await res.json();
+    let json;
+    try { json = await res.json(); } catch { throw new Error(`서버 응답 오류 (HTTP ${res.status})`); }
     if (json.errors) throw new Error(json.errors[0].message);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return json.data;
   }
 
@@ -75,7 +77,7 @@ const Api = (() => {
 
     async listGuestbooks() {
       if (!remote) return [...memory.guestbook];
-      const d = await gql(`query { listGuestbooks(limit: 1000) { items { id nickname message sticker createdAt } } }`);
+      const d = await gql(`query { listGuestbooks(limit: 20) { items { id nickname message sticker createdAt } } }`);
       return d.listGuestbooks.items;
     },
   };

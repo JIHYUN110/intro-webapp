@@ -1,0 +1,56 @@
+# 자기소개 웹앱 GraphQL 스키마 (AppSync → 스키마 화면에 통째로 붙여넣기)
+
+type Question {
+  id: ID!
+  text: String!
+  choices: [String!]!
+  answer: Int!          # 정답 보기 번호 1~4
+}
+
+type Score {
+  id: ID!
+  nickname: String!
+  score: Int!
+  title: String
+  createdAt: AWSDateTime!
+}
+
+type Guestbook {
+  id: ID!
+  nickname: String!
+  message: String!
+  sticker: String
+  createdAt: AWSDateTime!
+}
+
+type QuestionConnection { items: [Question!]! }
+type ScoreConnection { items: [Score!]! }
+type GuestbookConnection { items: [Guestbook!]! }
+
+input CreateScoreInput {
+  nickname: String!
+  score: Int!
+  title: String
+}
+
+input CreateGuestbookInput {
+  nickname: String!
+  message: String!
+  sticker: String
+}
+
+type Query {
+  listQuestions: QuestionConnection!
+  listScores(limit: Int): ScoreConnection!
+  listGuestbooks(limit: Int): GuestbookConnection!
+}
+
+type Mutation {
+  createScore(input: CreateScoreInput!): Score!
+  createGuestbook(input: CreateGuestbookInput!): Guestbook!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
